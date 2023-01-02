@@ -15,7 +15,8 @@ public class HouseSociety {
         catch (Exception ex) {
             ex.getStackTrace();
         }  
-
+        FirstPage obj = new FirstPage();
+        obj.setVisible(true);
     }
 //------------------------------------------------------------------------------
     
