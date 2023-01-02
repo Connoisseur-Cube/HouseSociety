@@ -1,17 +1,30 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
- */
-
 package housesociety;
 
-/**
- *  jdbc:mysql://localhost:3306/HousingSociety?zeroDateTimeBehavior=CONVERT_TO_NULL
- * @author Muhammad Ismail
- */
+import java.sql.*;
+
+
+
 public class HouseSociety {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        
+        try {
+            ConnectToMySQL instance = new ConnectToMySQL();
+            
+            Statement s = instance.getState();
+            ResultSet rs = s.executeQuery("Select * from tenant;");
+            
+            while(rs.next()){
+                System.out.println(rs.getInt("T_ID"));
+                System.out.println(rs.getString("T_Name"));
+                System.out.println(rs.getString("T_Email"));
+                System.out.println(rs.getInt("House_ID"));
+            }
+            
+        } catch (Exception ex) {
+            ex.getStackTrace();
+        }
+        
+
     }
 }
