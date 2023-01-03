@@ -20,6 +20,7 @@ public class ConnectToMySQL {
     private static Statement s;
     
     ConnectToMySQL()throws Exception{
+        
         try{
         Class.forName("com.mysql.cj.jdbc.Driver");  
         conn = DriverManager.getConnection(url,user,password);
@@ -28,6 +29,7 @@ public class ConnectToMySQL {
          e.printStackTrace();
         }
     }
+    
     
     Statement getState() throws SQLException{
         s = conn.createStatement();

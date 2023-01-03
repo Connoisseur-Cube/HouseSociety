@@ -170,7 +170,9 @@ public class TenantLog extends javax.swing.JFrame {
             Statement s = new ConnectToMySQL().getState();
             ResultSet rs = s.executeQuery(query);
             if(rs.next()){
-                jLabel4.setText("Success");
+
+                dispose();
+                new TenantDashboard(user);
             } else {
                 jLabel4.setText("Fail");
             }
