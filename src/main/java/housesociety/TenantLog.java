@@ -4,6 +4,9 @@
  */
 package housesociety;
 
+import java.sql.*;
+
+
 /**
  *
  * @author Muhammad Ismail
@@ -65,7 +68,7 @@ public class TenantLog extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("E-mail  : ");
+        jLabel2.setText("Username : ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -107,6 +110,7 @@ public class TenantLog extends javax.swing.JFrame {
 
         jLabel4.setForeground(new java.awt.Color(204, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText(" ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,8 +159,25 @@ public class TenantLog extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
+// THE MAIN BUTTON
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String user = jTextField2.getText();
+        String password = jTextField1.getText();
+        String query = "Select Name ,Password from housingsociety.login where Name = '" + user + "' AND Password = " + password;
+        System.out.println(user + " "+ password);
+        
+        try {
+            Statement s = new ConnectToMySQL().getState();
+            ResultSet rs = s.executeQuery(query);
+            if(rs.next()){
+                jLabel4.setText("Success");
+            } else {
+                jLabel4.setText("Fail");
+            }
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

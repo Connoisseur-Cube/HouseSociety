@@ -1,6 +1,6 @@
 package housesociety;
 
-import java.sql.*;
+
 
 public class HouseSociety {
 
@@ -17,6 +17,7 @@ public class HouseSociety {
         }  
         FirstPage obj = new FirstPage();
         obj.setVisible(true);
+        
     }
 //------------------------------------------------------------------------------
     

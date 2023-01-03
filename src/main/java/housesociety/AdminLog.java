@@ -111,6 +111,7 @@ public class AdminLog extends javax.swing.JFrame {
 
         jLabel4.setForeground(new java.awt.Color(204, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText(" ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -156,7 +157,12 @@ public class AdminLog extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if("Admin".equals(jTextField2.getText()) && "1234".equals(jTextField1.getText())){
+            jLabel4.setText("Correct");
+        }
+        else {
+            jLabel4.setText("HINT: 'Admin' and '1234'.");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
