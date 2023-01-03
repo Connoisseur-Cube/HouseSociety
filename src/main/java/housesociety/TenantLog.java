@@ -176,6 +176,7 @@ public class TenantLog extends javax.swing.JFrame {
             } else {
                 jLabel4.setText("Fail");
             }
+            s.close();
             
         } catch (Exception ex) {
             ex.printStackTrace();

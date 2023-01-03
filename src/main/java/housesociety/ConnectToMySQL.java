@@ -18,9 +18,8 @@ public class ConnectToMySQL {
     private final static String url = "jdbc:mysql://localhost:3306/HousingSociety?zeroDateTimeBehavior=CONVERT_TO_NULL";
     private static Connection conn;
     private static Statement s;
-    
-    ConnectToMySQL()throws Exception{
-        
+     
+    Statement getState() throws SQLException{
         try{
         Class.forName("com.mysql.cj.jdbc.Driver");  
         conn = DriverManager.getConnection(url,user,password);
@@ -28,10 +27,6 @@ public class ConnectToMySQL {
         catch(ClassNotFoundException | SQLException e){
          e.printStackTrace();
         }
-    }
-    
-    
-    Statement getState() throws SQLException{
         s = conn.createStatement();
         return s;
     }

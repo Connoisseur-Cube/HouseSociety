@@ -42,7 +42,7 @@ public class TenantReg extends JPanel implements ActionListener{
         while(rs.next()){
             Combo.addItem(rs.getString("address"));
         }
-        
+        s.close();
         reg.addActionListener(this);
         
         //adjust size and set layout
@@ -109,6 +109,8 @@ public class TenantReg extends JPanel implements ActionListener{
             
             System.out.println("Inserted into tenant");
             s.executeUpdate("Insert into housingsociety.login (Name, Password) values ('"+ name + "' , '"+ pass + "');");
+            
+            s.close();
             
             JDialog d = new JDialog(frame,"Success!",true);
             d.setLayout(new FlowLayout());

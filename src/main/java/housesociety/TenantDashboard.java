@@ -27,7 +27,7 @@ public class TenantDashboard {
                 area = rs.getInt("area");
                 rent = rs.getInt("rent");
             }
-            
+            s.close();
             JFrame frame = new JFrame("Tenant: "+user);
             JLabel n = new JLabel(" Name:  "+ user);
             JLabel e = new JLabel("E-mail: "+ Email);
