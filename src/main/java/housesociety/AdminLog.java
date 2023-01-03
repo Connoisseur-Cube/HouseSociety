@@ -158,7 +158,8 @@ public class AdminLog extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if("Admin".equals(jTextField2.getText()) && "1234".equals(jTextField1.getText())){
-            jLabel4.setText("Correct");
+            dispose();
+            new AdminDashboard().setVisible(true);
         }
         else {
             jLabel4.setText("HINT: 'Admin' and '1234'.");
