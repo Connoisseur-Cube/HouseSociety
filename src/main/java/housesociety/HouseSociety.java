@@ -1,7 +1,5 @@
 package housesociety;
 
-
-
 public class HouseSociety {
 
 //------------------------------------------------------------------------------    

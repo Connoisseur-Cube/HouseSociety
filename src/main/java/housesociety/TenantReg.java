@@ -19,7 +19,7 @@ public class TenantReg extends JPanel implements ActionListener{
     private JComboBox<String> Combo;
     private JButton reg;
     private JLabel error;
-    JFrame frame = new JFrame ("Tenant Register");
+    private static JFrame frame;
     
     public TenantReg() throws Exception {
 
@@ -80,6 +80,7 @@ public class TenantReg extends JPanel implements ActionListener{
     }
     
     public void start() throws Exception{
+        frame = new JFrame ("Tenant Register");
         frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add (new TenantReg());
         frame.setBounds(600, 250, WIDTH, HEIGHT);
@@ -95,24 +96,40 @@ public class TenantReg extends JPanel implements ActionListener{
             String address = Combo.getItemAt(Combo.getSelectedIndex());
             String pass = jcomp6.getText();
             int h_id = 0;
-            
-            System.out.println("Got pass successfully");
+
             
             Statement s = new ConnectToMySQL().getState();
             ResultSet rs = s.executeQuery("SELECT House_ID FROM housingsociety.house where address = '" + address + "';");
             if(rs.next()){
                 h_id = rs.getInt("House_ID");
             }
-            System.out.println("found h_id");
-            
+
             s.executeUpdate("INSERT INTO housingsociety.tenant (T_Name,T_Email,House_ID) VALUES ('" + name 
             + "' , '"+ email + "' , " + h_id + ");");
             
             System.out.println("Inserted into tenant");
             s.executeUpdate("Insert into housingsociety.login (Name, Password) values ('"+ name + "' , '"+ pass + "');");
             
-            frame.dispose();
-            new FirstPage().setVisible(true);       
+            JDialog d = new JDialog(frame,"Success!",true);
+            d.setLayout(new FlowLayout());
+            d.setBounds(600,250,150,150);
+            JButton b = new JButton ("OK"); 
+            b.addActionListener ( new ActionListener()  {  
+            public void actionPerformed( ActionEvent e )  
+            {  
+                d.setVisible(false);  
+                frame.dispose();
+                new FirstPage().setVisible(true);
+                
+            }  
+            });  
+            d.add( new JLabel ("Record Successfully created!."));  
+            d.add(b);   
+            d.setSize(300,300);    
+            d.setVisible(true); 
+            
+            
+      
             
         }
         catch(Exception ex){

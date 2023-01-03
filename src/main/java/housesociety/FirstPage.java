@@ -142,7 +142,7 @@ public class FirstPage extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
         try {
-            new TenantReg();
+            new TenantReg().start();
         } catch (Exception ex) {
             Logger.getLogger(FirstPage.class.getName()).log(Level.SEVERE, null, ex);
         }
