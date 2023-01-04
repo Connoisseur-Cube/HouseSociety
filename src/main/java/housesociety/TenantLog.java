@@ -163,7 +163,7 @@ public class TenantLog extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String user = jTextField2.getText();
         String password = jTextField1.getText();
-        String query = "Select Name ,Password from housingsociety.login where Name = '" + user + "' AND Password = " + password;
+        String query = "Select Name ,Password from housingsociety.login where Name = '" + user + "' AND Password = " + password+ ";";
         System.out.println(user + " "+ password);
         
         try {

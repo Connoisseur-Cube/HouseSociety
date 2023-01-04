@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+// Code to Output tables in another window
+
 public class TableOutput implements ActionListener {
 
     public static JFrame frame;

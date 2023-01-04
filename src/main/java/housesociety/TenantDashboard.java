@@ -9,12 +9,14 @@ public class TenantDashboard {
 
     TenantDashboard(String user) throws Exception{
         
+            // Initializing variables
             String Email ="";
             int house_id = -1;
             String address = "";
             int area = 0;
             int rent = 0;
             
+            // Getting Data from database
             Statement s = new ConnectToMySQL().getState();
             ResultSet rs = s.executeQuery("Select * from housingsociety.tenant where T_Name = '"+ user +"';");
             while(rs.next()){
