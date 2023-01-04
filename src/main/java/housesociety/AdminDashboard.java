@@ -94,6 +94,11 @@ public class AdminDashboard extends javax.swing.JFrame {
         T_HouseID.setText(" ");
 
         searchTenant.setText("Search");
+        searchTenant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTenantActionPerformed(evt);
+            }
+        });
 
         DisplayTenant.setText("Display All");
         DisplayTenant.addActionListener(new java.awt.event.ActionListener() {
@@ -306,12 +311,9 @@ public class AdminDashboard extends javax.swing.JFrame {
             Statement s = new ConnectToMySQL().getState();
             ResultSet rs = s.executeQuery("Select * from housingsociety.tenant;");
             String[] column = {"T_ID","T_Name","T_Email","House_ID"};
-            JTable table = new JTable(null,column);
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
-            while (rs.next()) {
-            model.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3)});
-            }
-            
+            String data[][] = ConnectToMySQL.ResultSetToData(rs);
+            new TableOutput(column,data);
+                        
         }
         catch(Exception e){
             e.printStackTrace();
@@ -321,6 +323,25 @@ public class AdminDashboard extends javax.swing.JFrame {
     private void HouseDisplayAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HouseDisplayAllActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_HouseDisplayAllActionPerformed
+
+    private void searchTenantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTenantActionPerformed
+        try{
+            String id = tenantfield.getText();
+            if(id != ""){
+            Statement s = new ConnectToMySQL().getState();
+            ResultSet rs = s.executeQuery("Select * from housingsociety.tenant where T_ID ="+ id +";");
+            String[] column = {"T_ID","T_Name","T_Email","House_ID"};
+            String data[][] = ConnectToMySQL.ResultSetToData(rs);
+            new TableOutput(column,data);
+            }else {
+                System.out.println("EMPTY YOU NIGGA");
+            }
+
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_searchTenantActionPerformed
 
     /**
      * @param args the command line arguments
