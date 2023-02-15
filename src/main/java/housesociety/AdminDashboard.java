@@ -5,7 +5,6 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -491,8 +490,14 @@ public class AdminDashboard extends javax.swing.JFrame {
         }
         else{
             try {
+            String n = "";
             Statement s = new ConnectToMySQL().getState();
+            ResultSet rs = s.executeQuery("SELECT T_Name FROM housingsociety.tenant WHERE T_ID = "+ TID + ";");
+            if(rs.next()){
+                n = rs.getString("T_Name");
+            }
             s.executeUpdate("DELETE FROM housingsociety.tenant WHERE T_ID = "+ TID + ";");
+            s.executeUpdate("DELETE FROM housingsociety.login WHERE Name = "+ n + ";");
             s.close();
             
             STATUS.setText("DELETED!");
